@@ -22,6 +22,10 @@ public class StorageService{
         addArticle();
     }
 
+    public Optional<Product> getProductById(UUID id) {
+        return Optional.ofNullable(storageProduct.get(id));
+    }
+
     public Collection<Product> getAllProducts(){
         return storageProduct.values();
     }
@@ -29,6 +33,7 @@ public class StorageService{
     public Collection<Article> getAllArticles(){
         return storageArticle.values();
     }
+
     public List<Searchable> getAllSearch(){
         ArrayList<Searchable> list = new ArrayList<>();
         for (Map.Entry<UUID, Product> entry : storageProduct.entrySet() ){
