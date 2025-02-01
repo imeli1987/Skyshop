@@ -1,6 +1,7 @@
 package org.skypro.skyshop.model.service;
 
 import org.skypro.skyshop.model.article.Article;
+import org.skypro.skyshop.model.exceptions.NoSuchProductException;
 import org.skypro.skyshop.model.product.DiscountedProduct;
 import org.skypro.skyshop.model.product.FixPriceProduct;
 import org.skypro.skyshop.model.product.Product;
@@ -23,6 +24,9 @@ public class StorageService{
     }
 
     public Optional<Product> getProductById(UUID id) {
+        if ( id == null){
+            throw new NoSuchProductException( "Нет такого продукта" );
+        }
         return Optional.ofNullable(storageProduct.get(id));
     }
 
@@ -54,9 +58,9 @@ public class StorageService{
         Product product5 = new DiscountedProduct(UUID.randomUUID(),"Ананас", 800, 20);
         Product product6 = new SimpleProduct(UUID.randomUUID(),"Чай", 500);
         Product product7 = new SimpleProduct(UUID.randomUUID(),"Чай", 500);
-        Product product8 = new DiscountedProduct(UUID.randomUUID(),"Чай", 300, 15);
-        Product product9 = new DiscountedProduct(UUID.randomUUID(),"Кофе", 300, 15);
-        Product product10 = new DiscountedProduct(UUID.randomUUID(),"Чай", 300, 15);
+        Product product8 = new DiscountedProduct(UUID.randomUUID(),"Чай", 300, 60);
+        Product product9 = new DiscountedProduct(UUID.randomUUID(),"Кофе", 300, 50);
+        Product product10 = new DiscountedProduct(UUID.randomUUID(),"Чай", 300, 40);
 
         storageProduct.put(product.getId(), product);
         storageProduct.put(product1.getId(), product1);
