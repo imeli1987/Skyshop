@@ -16,23 +16,9 @@ public class SearchService{
     }
 
     public List<SearchResult> search( String query ){
-        return storage.getAllSearch().stream()
-                .filter(s -> s.getName().contains(query))
-                .map(SearchResult::fromSearchable)
-                .collect( Collectors.toCollection( ArrayList::new ) );
+        return storage.getAllSearch().stream()                              // Весь список для поиска
+                .filter(s -> s.getName().contains(query))       //  отфильтровываем по поисковому запросу
+                .map(SearchResult::fromSearchable)                         //  и формируем результат
+                .collect( Collectors.toCollection( ArrayList::new ) );      //  в список
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
