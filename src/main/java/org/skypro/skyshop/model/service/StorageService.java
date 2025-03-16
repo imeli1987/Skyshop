@@ -19,8 +19,8 @@ public class StorageService{
     public StorageService(){
         this.storageProduct = new HashMap<>();
         this.storageArticle = new HashMap<>();
-        addProduct();
-        addArticle();
+//        addTestArticle();
+//        addTestArticle();
     }
 
     public Optional<Product> getProductById(UUID id) {
@@ -48,8 +48,14 @@ public class StorageService{
         }
         return list;
     }
+    public void addProduct(Product product){
+        storageProduct.put(product.getId(), product);
+    }
+    public void addArticle(Article article){
+        storageArticle.put(article.getId(), article);
+    }
 
-    private void addProduct(){
+    private void addTestProduct(){
         Product product = new DiscountedProduct(UUID.randomUUID(),"Арабика", 500, 10);
         Product product1 = new SimpleProduct(UUID.randomUUID(),"Кофе в зёрнах", 600);
         Product product2 = new FixPriceProduct(UUID.randomUUID(),"Чай зелёный");
@@ -74,7 +80,9 @@ public class StorageService{
         storageProduct.put(product9.getId(), product9);
         storageProduct.put(product10.getId(), product10);
     }
-    private void addArticle(){
+
+
+    private void addTestArticle(){
         Article article1 = new Article(UUID.randomUUID(),"Сахар", "сладкий");
         Article article2 = new Article(UUID.randomUUID(),"Молоко", "2,5 %");
         Article article3 = new Article(UUID.randomUUID(),"Кофе растворимый", "Кофе Робуста");

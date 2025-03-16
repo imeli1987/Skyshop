@@ -26,13 +26,14 @@ class SearchServiceTest{
     private StorageService mockStorageService;
 
     @InjectMocks
-    private SearchService mockSearchService;
+    private SearchService searchService;
 
     @Test
     void testSearchWhenEmpty(){
+
         when( mockStorageService.getAllSearch() ).thenReturn( Collections.emptyList() );
 
-        List<SearchResult> results = mockSearchService.search( "кофе" );
+        List<SearchResult> results = searchService.search( "кофе" );
 
         assertTrue( results.isEmpty() );
     }
@@ -46,8 +47,8 @@ class SearchServiceTest{
 
         when( mockStorageService.getAllSearch() ).thenReturn( List.of( testProduct1, testProduct2, testAarticle1, testAarticle2 ) );
 
-        List<SearchResult> results = mockSearchService.search( "кофе" );
-        List<SearchResult> results2 = mockSearchService.search( "Чай" );
+        List<SearchResult> results = searchService.search( "кофе" );
+        List<SearchResult> results2 = searchService.search( "Чай" );
 
         List<String> results3 = results2.stream().map( SearchResult::getName ).toList();
 
